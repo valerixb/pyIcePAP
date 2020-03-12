@@ -1,0 +1,47 @@
+{% set name = "icepap" %}
+{% set version = "3.2.0" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  path: ../
+
+build:
+  number: 0
+  noarch: python
+  entry_points:
+    - icepap = icepap.__main__:main
+  script: "{{ PYTHON }} -m pip install . -vv"
+
+requirements:
+  host:
+    - numpy
+    - pip
+    - python
+  run:
+    - python
+    - numpy
+
+test:
+  imports:
+    - icepap
+  commands:
+    - icepap --help
+  requires:
+    - pytest
+    - pytest-cov
+
+about:
+  home: "https://github.com/ALBA-Synchrotron/pyIcePAP"
+  license: "GNU General Public v3 (GPLv3)"
+  license_family: GPL3
+  license_file: 
+  summary: "Python IcePAP Extension"
+  doc_url: 
+  dev_url: 
+
+extra:
+  recipe-maintainers:
+    - your-github-id-here
